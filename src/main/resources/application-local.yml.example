@@ -1,0 +1,24 @@
+# Copia aquest fitxer a application-local.yml i ajusta els valors segons el teu entorn
+# cp application-local.yml.example application-local.yml
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/PlanificadorDeRutes
+    username: CHANGE_ME
+    password: CHANGE_ME
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+gtfs:
+  directory1: /path/to/gtfs/directory1
+  directory2: /path/to/gtfs/directory2
+  cron: "0 0 3 * * *"
+  download-directory: /tmp/gtfs-download
+
+journey:
+  algorithm: mcraptor
+
+admin:
+  api-key: CHANGE_ME

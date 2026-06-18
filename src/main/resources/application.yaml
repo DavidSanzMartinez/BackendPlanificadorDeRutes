@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: PlanificadorDeRutes
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  datasource:
+    hikari:
+      maximum-pool-size: 25
+  data:
+    redis:
+      url: ${REDIS_URL:redis://localhost:6379}
+
+gtfs:
+  download-url-larga-distancia: https://data.renfe.com/dataset/34be0058-3a3d-4ee1-89cd-512e1226f53f/resource/25d6b043-9e47-4f99-bd91-edd51d782450/download/google_transit.zip
+  download-url-cercanias: https://ssl.renfe.com/ftransit/Fichero_CER_FOMENTO/fomento_transit.zip
+  download-enabled: true
+  cron: "0 0 3 * * *"
+journey:
+  algorithm: dijkstra
+admin:
+  api-key: ${ADMIN_API_KEY:}

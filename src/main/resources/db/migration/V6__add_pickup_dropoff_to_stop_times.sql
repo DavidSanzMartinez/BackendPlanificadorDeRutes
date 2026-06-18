@@ -1,0 +1,2 @@
+ALTER TABLE stop_times ADD COLUMN pickup_type INTEGER DEFAULT 0;
+ALTER TABLE stop_times ADD COLUMN drop_off_type INTEGER DEFAULT 0;

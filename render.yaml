@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: planificador-rutes-backend
+    runtime: docker
+    plan: free
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: ADMIN_API_KEY
+        generateValue: true
+      - key: POSTGRES_HOST
+        fromDatabase:
+          name: planificador-postgres
+          property: host
+      - key: POSTGRES_PORT
+        fromDatabase:
+          name: planificador-postgres
+          property: port
+      - key: POSTGRES_DB
+        fromDatabase:
+          name: planificador-postgres
+          property: database
+      - key: POSTGRES_USER
+        fromDatabase:
+          name: planificador-postgres
+          property: user
+      - key: POSTGRES_PASSWORD
+        fromDatabase:
+          name: planificador-postgres
+          property: password
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: planificador-redis
+          property: connectionString
+
+  - type: keyvalue
+    name: planificador-redis
+    plan: free
+    ipAllowList: []
+
+databases:
+  - name: planificador-postgres
+    plan: free
+    databaseName: planificador
+    user: planificador
